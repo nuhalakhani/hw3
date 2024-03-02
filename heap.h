@@ -90,10 +90,12 @@ Heap<T, PComparator>::~Heap() {
 template <typename T, typename PComparator>
 void Heap<T, PComparator>::push(const T& item) {
   heap.push_back(item);
-  if(heap.size() == 1) {
-    return;
+  int idx = heap.size()-1;
+  while (c1(heap[idx], heap[(idx-1)/m1])) {
+    swap(heap[idx],heap[(idx-1)/m1]);
+    idx = (idx-1)/m1;
   }
-  
+  return;
 }
 
 // We will start top() for you to handle the case of 
@@ -140,7 +142,7 @@ void Heap<T,PComparator>::pop()
 
 template <typename T, typename PComparator>
 void Heap<T, PComparator>::heapify(int idx) {
-  if((unsigned)idx*m1 >= heap.size()) {
+  if((unsigned)idx*m1+1 >= heap.size()) {
     return;
   }
   int child = m1*idx+1;
