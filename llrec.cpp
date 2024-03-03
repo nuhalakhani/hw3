@@ -4,9 +4,9 @@
 // Provide your implementation of llpivot below
 //*********************************************
 void llpivot(Node *&head, Node *&smaller, Node *&larger, int pivot){
-  if(head == NULL) {
-    smaller = NULL;
-    larger = NULL;
+  if(head == nullptr) {
+    smaller = nullptr;
+    larger = nullptr;
     return;
   }
   if(head->val <= pivot) {
