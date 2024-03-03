@@ -61,7 +61,7 @@ public:
    */
   size_t size() const;
 
-  void heapify(int idx);
+  void heapify(int index);
 
 private:
   /// Add whatever helper functions and data members you need below
@@ -87,10 +87,10 @@ Heap<T, PComparator>::~Heap() {
 template <typename T, typename PComparator>
 void Heap<T, PComparator>::push(const T& item) {
   heap.push_back(item);
-  int idx = heap.size()-1;
-  while (c1(heap[idx], heap[(idx-1)/m1])) {
-    swap(heap[idx],heap[(idx-1)/m1]);
-    idx = (idx-1)/m1;
+  int index = heap.size()-1;
+  while (c1(heap[index], heap[(index-1)/m1])) {
+    swap(heap[index],heap[(index-1)/m1]);
+    index = (index-1)/m1;
   }
   return; 
 }
@@ -135,9 +135,9 @@ void Heap<T,PComparator>::pop()
 }
 
 template <typename T, typename PComparator>
-void Heap<T, PComparator>::heapify(int idx) {
+void Heap<T, PComparator>::heapify(int index) {
 
-  int first_child_idx = m1*idx+1;
+  int first_child_idx = m1*index+1;
   if((unsigned)first_child_idx >= heap.size()) {
     return;
   }
@@ -152,8 +152,8 @@ void Heap<T, PComparator>::heapify(int idx) {
       }
     }
   }
-  if(c1(heap[min_child_idx], heap[idx])) {
-    swap(heap[min_child_idx], heap[idx]);
+  if(c1(heap[min_child_idx], heap[index])) {
+    swap(heap[min_child_idx], heap[index]);
     heapify(min_child_idx);
   }
 } 
