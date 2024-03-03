@@ -75,10 +75,7 @@ private:
 
 // Add implementation of member functions here
 template <typename T, typename PComparator>
-Heap<T, PComparator>::Heap(int m, PComparator c) {
-  c1 = c;
-  m1 = m;
-}
+Heap<T, PComparator>::Heap(int m, PComparator c) : m1(m), c1(c) {}
 
 template <typename T, typename PComparator>
 Heap<T, PComparator>::~Heap() {
@@ -114,7 +111,7 @@ T const & Heap<T,PComparator>::top() const
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
-  return heap[0];
+  return heap.front();
 
 
 }
