@@ -61,13 +61,13 @@ public:
    */
   size_t size() const;
 
-  //void heapify(int idx);
+  void heapify(int idx);
 
 private:
   /// Add whatever helper functions and data members you need below
   vector<T> heap;
-  int m;
-  PComparator c;
+  int m1;
+  PComparator c1;
 
 
 
@@ -75,28 +75,28 @@ private:
 
 // Add implementation of member functions here
 template <typename T, typename PComparator>
-Heap<T, PComparator>::Heap(int m, PComparator c) : m(m), c(c) {
-  //c1 = c;
-  //m1 = m;
+Heap<T, PComparator>::Heap(int m, PComparator c) /*: m(m), c(c) */ {
+  c1 = c;
+  m1 = m;
 }
 
 template <typename T, typename PComparator>
 Heap<T, PComparator>::~Heap() {
-  //while(!empty()) {
-    //heap.pop_back();
-  //}
+  while(!empty()) {
+    heap.pop_back();
+  }
 }
 
 template <typename T, typename PComparator>
 void Heap<T, PComparator>::push(const T& item) {
-  /*heap.push_back(item);
+  heap.push_back(item);
   int idx = heap.size()-1;
   while (c1(heap[idx], heap[(idx-1)/m1])) {
     swap(heap[idx],heap[(idx-1)/m1]);
     idx = (idx-1)/m1;
   }
-  return; */
-  heap.push_back(item);
+  return; 
+  /*heap.push_back(item);
   if(heap.size() == 1) return;
 
   int size = heap.size();
@@ -110,7 +110,7 @@ void Heap<T, PComparator>::push(const T& item) {
       parent = (insert_index -1)/m;
     }
     else break;
-  }
+  } */
 }
 
 // We will start top() for you to handle the case of 
@@ -129,7 +129,8 @@ T const & Heap<T,PComparator>::top() const
   }
   // If we get here we know the heap has at least 1 item
   // Add code to return the top element
-  return heap.front();
+  //return heap.front();
+  return heap[0];
 
 
 }
@@ -146,12 +147,12 @@ void Heap<T,PComparator>::pop()
     // ================================
   throw underflow_error("Empty");
   }
-  /*T temp = heap[heap.size()-1];
+  T temp = heap[heap.size()-1];
   heap[0] = temp;
   heap.pop_back();
-  heapify(0); */
+  heapify(0); 
 
-  if(heap.size() == 1) {
+  /*if(heap.size() == 1) {
     heap.pop_back();
     return;
   }
@@ -170,13 +171,13 @@ void Heap<T,PComparator>::pop()
     }
     swap(heap[parent], heap[min_idx]);
     parent = min_idx;
-  }
+  } */
 
 
 
 }
 
-/*template <typename T, typename PComparator>
+template <typename T, typename PComparator>
 void Heap<T, PComparator>::heapify(int idx) {
   if((unsigned)idx*m1+1 >= heap.size()) {
     return;
@@ -194,7 +195,7 @@ void Heap<T, PComparator>::heapify(int idx) {
     swap(heap[child], heap[idx]);
     heapify(child);
   }
-} */
+} 
 
 template <typename T, typename PComparator>
 bool Heap<T, PComparator>::empty() const{
